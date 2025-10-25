@@ -9,13 +9,13 @@ from PIL import Image
 from rich import print
 
 from .miscs import (
+    CENTER_SCREEN,
     DUNGEON_NOT_CHANGED_SECONDS,
     DUNGEON_RESET_AT,
     DUNGEON_ROOM_MONITOR,
+    MAX_ERRORS,
     RE_ENTER_MONITOR,
     RE_ENTER_OFFSET,
-    CENTER_SCREEN,
-    MAX_ERRORS,
 )
 from .vision import Vision
 
@@ -39,7 +39,7 @@ class Dungeon(ABC):
         pydirectinput.keyUp("s")
 
     @staticmethod
-    def re_enter(sct: MSSBase):
+    def re_enter(sct: MSSBase, room: int):
         print("Searching for re-enter button")
 
         screenshot = np.array(sct.grab(RE_ENTER_MONITOR))
@@ -52,6 +52,10 @@ class Dungeon(ABC):
             pydirectinput.moveTo(x, y, duration=1)
             pydirectinput.click()
             pydirectinput.moveTo(CENTER_SCREEN[0], CENTER_SCREEN[1], duration=1)
+
+            pydirectinput.keyDown("w")
+            time.sleep(room * 2)
+            pydirectinput.keyUp("w")
 
 
 class StraightWalkDungeon(Dungeon):
@@ -82,7 +86,7 @@ class StraightWalkDungeon(Dungeon):
                         print(
                             f"Go back called {DUNGEON_RESET_AT} times, re-entering dungeon"
                         )
-                        StraightWalkDungeon.re_enter(sct)
+                        StraightWalkDungeon.re_enter(sct, room)
                         go_back_count = 0
                     else:
                         print(
