@@ -14,6 +14,7 @@ from .miscs import (
     DUNGEON_ROOM_MONITOR,
     RE_ENTER_MONITOR,
     RE_ENTER_OFFSET,
+    CENTER_SCREEN,
     MAX_ERRORS,
 )
 from .vision import Vision
@@ -50,6 +51,7 @@ class Dungeon(ABC):
 
             pydirectinput.moveTo(x, y, duration=1)
             pydirectinput.click()
+            pydirectinput.moveTo(CENTER_SCREEN[0], CENTER_SCREEN[1], duration=1)
 
 
 class StraightWalkDungeon(Dungeon):
