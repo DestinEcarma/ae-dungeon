@@ -1,3 +1,5 @@
+CENTER_SCREEN = (960, 540)
+
 GAMEMODE_PROMPT_MONITOR = {"top": 98, "left": 753, "width": 414, "height": 208}
 GAMEMODE_PROMPT_OFFSET = (
     GAMEMODE_PROMPT_MONITOR["left"],

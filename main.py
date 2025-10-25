@@ -8,7 +8,7 @@ from pynput import keyboard
 from rich import print
 
 from src.dungeon import NightmareDungeon, StandStillDungeon, StraightWalkDungeon
-from src.miscs import GAMEMODE_PROMPT_MONITOR, GAMEMODE_PROMPT_OFFSET
+from src.miscs import CENTER_SCREEN, GAMEMODE_PROMPT_MONITOR, GAMEMODE_PROMPT_OFFSET
 from src.vision import Vision
 
 VISIONS = {
@@ -108,7 +108,7 @@ class Runner:
                 if dungeon:
                     time.sleep(1)
                     dungeon.start(sct)
-                    pydirectinput.moveTo(960, 540, duration=1)
+                    pydirectinput.moveTo(CENTER_SCREEN[0], CENTER_SCREEN[1], duration=1)
 
 
 if __name__ == "__main__":
