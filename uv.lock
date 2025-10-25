@@ -27,9 +27,6 @@ requires-dist = [
     { name = "rich", specifier = ">=14.2.0" },
 ]
 
-[package.metadata.requires-dev]
-dev = []
-
 [[package]]
 name = "evdev"
 version = "1.9.2"
