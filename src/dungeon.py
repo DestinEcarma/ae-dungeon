@@ -1,7 +1,6 @@
 import time
 from abc import ABC, abstractmethod
 
-import cv2 as cv
 import numpy as np
 import pydirectinput
 import pytesseract
@@ -44,10 +43,6 @@ class Dungeon(ABC):
 
         screenshot = np.array(sct.grab(RE_ENTER_MONITOR))
         rectangles = RE_ENTER_VISION.find(screenshot)
-
-        Vision.draw_rectangles(rectangles)
-        cv.imshow("Re Enter", screenshot)
-        cv.waitKey()
 
         if len(rectangles) > 0:
             print("Re-enter button found, clicking...")
